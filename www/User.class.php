@@ -89,7 +89,7 @@ class User
     {
         $all_users = $this->connect()->query("SELECT * FROM `users`");
         while (($row = $all_users->fetch_assoc()) != false) {
-            if (strtolower($row["login"] == strtolower($login)) && $row["password"] == $password && $row["status"]=="2")
+            if (strtolower($row["login"]) == strtolower($login) && $row["password"] == $password && $row["status"]=="2")
             {
                 $_SESSION["auth"] = $login;
                 return true;

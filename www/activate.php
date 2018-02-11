@@ -7,6 +7,8 @@ include_once "config.php";
        $user = new User();
         $act = $_GET["activation"];
         if($user->activationEmail($act)){
+            $title = "Активация";
+            $smarty->assign('title', $title);
             $message = "Вы успешно подтвердили свой E-mail адрес.";
             $smarty->assign('message', $message);
             $content_page = $smarty->fetch("message.tpl");
@@ -15,6 +17,8 @@ include_once "config.php";
         }
 
         else{
+            $title = "Активация";
+            $smarty->assign('title', $title);
             $message = $user->error();
             $smarty->assign('message', $message);
             $content_page = $smarty->fetch("message.tpl");
