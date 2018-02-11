@@ -1,1 +1,0 @@
-<div class="confirm_email">{$message}</div>
