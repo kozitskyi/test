@@ -16,14 +16,6 @@ $user = new User();
 $user_info = $user->getInfoUser();
 
 
-if(!$_REQUEST['page']) {
-    if(!isset($_SESSION["auth"])) $name_auth = "Гость";
-    $smarty->assign('title', $title);
-    $smarty->assign('name_auth', $name_auth);
-    $content_page = $smarty->fetch("main.tpl");
-    $smarty->assign('content_page', $content_page);
-}
-
 if($_REQUEST['page'] == "profile" && $auth) {
     $title = "Мой профиль";
     $name_auth = $_SESSION["auth"];
@@ -32,16 +24,24 @@ if($_REQUEST['page'] == "profile" && $auth) {
     $smarty->assign('email_auth', $user_info["email"]);
     $smarty->assign('name_auth', $name_auth);
     $content_page = $smarty->fetch("profile.tpl");
-    $name_auth = $smarty->fetch("profile.tpl");
-    $fname_auth = $smarty->fetch("profile.tpl");
-    $email_auth = $smarty->fetch("profile.tpl");
+    $smarty->assign('content_page', $content_page);
+}
+else {
+    $content_page = $smarty->fetch("login.tpl");
     $smarty->assign('content_page', $content_page);
 }
 
-if($_REQUEST['page'] == "profile" && !$auth) {
-    $content_page = $smarty->fetch("login.tpl");
+
+if(!$_REQUEST['page']) {
+    $title = "Главная";
+    if(!isset($_SESSION["auth"])) $name_auth = "Гость";
+    $smarty->assign('title', $title);
+    $smarty->assign('name_auth', $name_auth);
+    $content_page = $smarty->fetch("main.tpl");
     $smarty->assign('content_page', $content_page);
-    }
+}
+
+
 
 if(isset($_GET["logout"])) {
     $user->logout();

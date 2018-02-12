@@ -13,6 +13,6 @@ $smarty->compile_dir='tpl/templates_c/';
 $smarty->config_dir='tpl/configs/';
 $smarty->cache_dir='tpl/cache/';
 
-$title = "Главная";
+
 $name_auth = $_SESSION["auth"];
 ?>
